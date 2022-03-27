@@ -1,0 +1,17 @@
+<use   name="FWCore/Framework"/>
+<use   name="FWCore/ParameterSet"/>
+<use   name="DataFormats/Common"/>
+<use   name="PhysicsTools/Utilities"/>
+<use   name="CommonTools/Utils"/>
+<use   name="DataFormats/Math"/>
+<use   name="root"/>
+<use   name="roofit"/>
+<use   name="rootminuit"/>
+<use   name="rootminuit2"/>
+<use   name="roottmva"/>
+<use   name="classlib"/>
+
+<export>
+  <lib   name="1"/>
+</export>
+
