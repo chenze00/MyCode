@@ -1,0 +1,19 @@
++RequestRuntime=10000
+
+RequestMemory = 2000
+
+executable = jobs/runTuple_eventTuple_1-1.sh
+arguments = eventTuple_1-1 output
+
+transfer_executable = True
+universe            = vanilla
+getenv              = True
+Requirements        = OpSysAndVer == "EL7"
+when_to_transfer_output = ON_EXIT
+
+output              = jobs/eventTuple_1-1.out
+error               = jobs/eventTuple_1-1.error
+log                 = jobs/eventTuple_1-1.log
+
+queue
+

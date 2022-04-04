@@ -22,7 +22,7 @@ float dPhi(float phi1,float phi2);// |phi1 - phi2| in 2pi range
 bool sortpt( const vector<float_t>& v1,const vector<float_t>& v2 );//2d list sorted by row/column
 void transpose(vector<vector<float_t> > &b);//matrix transpose
 
-void MyTauClass::Loop()
+void MyTauClass::Loop(TSTring outputpath="")
 {
   std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();//estimated time 375.327[s]
   // made with tau->MakeClass("MyTauClass")
@@ -57,8 +57,9 @@ void MyTauClass::Loop()
 // Book here my histograms
    
    //Ntuple output dataforML_(Tbranch)_(pfCand cone size)_(pt ratio)_(cone seed).root
-    TString outputname=inputName+TString("__dataforML_flattend2_dR02_jetpt_Lh.root");
-    TFile ML_file(outputname,"RECREATE");
+    TString outputname=inputName+TString("__dataforML_flattend2_dR02_jetpt_jet.root");
+    if(outputpath.Length()>0 && !outputpath.EndsWith("/")) outputpath.Append("/");
+    TFile ML_file(outputpath+outputname,"RECREATE");
     TTree ML_data("ML_data", "Example N-Tuple");
    
     int dm_gen, dm_HPS;
@@ -247,7 +248,7 @@ void MyTauClass::Loop()
         for(Int_t j=0; j<leng; j++){//run over pfCand in an event
 	  int particleId=(*pfCand_particleType)[j];
             
-     Float_t ConeSeed_eta=Lh_eta, ConeSeed_phi=Lh_phi;
+     Float_t ConeSeed_eta=jet_eta, ConeSeed_phi=jet_phi;
 	  deltaeta = abs(ConeSeed_eta - (*pfCand_eta)[j]);//genLepton_vis_eta OR jet_eta OR Lh_eta
 	  deltaphi = abs(dPhi(ConeSeed_phi,(*pfCand_phi)[j]));//genLepton_vis_phi OR jet_phi OR Lh_eta
 	  deltaR=sqrt(deltaeta*deltaeta + deltaphi*deltaphi);	    
