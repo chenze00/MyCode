@@ -1,22 +1,17 @@
 #!/bin/sh 
-# $1 - sample
+# $1 - full path input file
 
 #/eos/cms/store/group/phys_tau/TauML/prod_2018_v2/full_tuples/DYJetsToLL_M-50
 FILENAME=${1##*/}
 FILENAME=${FILENAME%.*}
 cat > jobs/runTuple_$FILENAME.submit <<EOF
-+RequestRuntime=10000
-
-RequestMemory = 2000
++RequestRuntime = 600
 
 executable = jobs/runTuple_$FILENAME.sh
-arguments = $FILENAME output
 
-transfer_executable = True
 universe            = vanilla
 getenv              = True
-Requirements        = OpSysAndVer == "EL7"
-when_to_transfer_output = ON_EXIT
+Requirements        = OpSysAndVer == "CentOS7"
 
 output              = jobs/$FILENAME.out
 error               = jobs/$FILENAME.error
@@ -29,10 +24,11 @@ EOF
 cat > jobs/runTuple_$FILENAME.sh <<EOF1
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 export SCRAM_ARCH=slc7_amd64_gcc700
-cd ${CMSSW_BASE}/src
+#cd ${CMSSW_BASE}/src
+cd /afs/cern.ch/user/c/chenz/CMSSW_10_6_20/src
 cmsenv
 cd -
-runTuple $FILENAME output
+runTuple $1 output
 EOF1
 chmod u+x jobs/runTuple_$FILENAME.sh
 chmod u+x jobs/runTuple_$FILENAME.submit

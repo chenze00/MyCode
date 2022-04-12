@@ -1,0 +1,14 @@
++RequestRuntime = 600
+
+executable = jobs/runTuple_eventTuple_100.sh
+
+universe            = vanilla
+getenv              = True
+Requirements        = OpSysAndVer == "CentOS7"
+
+output              = jobs/eventTuple_100.out
+error               = jobs/eventTuple_100.error
+log                 = jobs/eventTuple_100.log
+
+queue
+

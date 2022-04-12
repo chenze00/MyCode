@@ -22,7 +22,7 @@ float dPhi(float phi1,float phi2);// |phi1 - phi2| in 2pi range
 bool sortpt( const vector<float_t>& v1,const vector<float_t>& v2 );//2d list sorted by row/column
 void transpose(vector<vector<float_t> > &b);//matrix transpose
 
-void MyTauClass::Loop(TSTring outputpath="")
+void MyTauClass::Loop(TString outputpath="")
 {
   std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();//estimated time 375.327[s]
   // made with tau->MakeClass("MyTauClass")

@@ -1,3 +1,5 @@
+//argv[1] is full path  root file name
+//argv[2] is output path
 using namespace std;
 #include "MyCode/TupleProducer/interface/MyTauClass.h"
 

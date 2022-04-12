@@ -18,7 +18,7 @@ using namespace std;
 
 class MyTauClass {
 public :
-  TString         inputName; //file name
+  TString         inputName; //full path file name
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
    Int_t           fCurrent; //!current Tree number in a TChain
 
