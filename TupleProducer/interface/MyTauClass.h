@@ -1132,7 +1132,7 @@ public :
    TBranch        *b_isoTrack_n_LostStripHits_MISSING_INNER;   //!
    TBranch        *b_isoTrack_n_LostStripHits_MISSING_OUTER;   //!
 
-   MyTauClass(TString filepath, TTree *tree=0);
+   MyTauClass(TString filepath, TTree *tree);
    virtual ~MyTauClass();
    virtual Int_t    Cut(Long64_t entry);
    virtual Int_t    GetEntry(Long64_t entry);

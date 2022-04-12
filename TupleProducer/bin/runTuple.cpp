@@ -10,7 +10,7 @@ int main(int argc, char * argv[]){
     TFile *file=new TFile(input_filename,"READ");
     TTree *tree=(TTree*)file->Get("taus");
     
-    MyTauClass tau(tree,input_filename);
+    MyTauClass tau(input_filename,tree);
     
     tau.Loop(outputpath);
     
