@@ -1132,13 +1132,13 @@ public :
    TBranch        *b_isoTrack_n_LostStripHits_MISSING_INNER;   //!
    TBranch        *b_isoTrack_n_LostStripHits_MISSING_OUTER;   //!
 
-   MyTauClass(TTree *tree=0,TString filepath="/nfs/dust/cms/user/cardinia/TauReco/example_rootfiles/DYJetsToLL_M-50.root");
+   MyTauClass(TString filepath, TTree *tree=0);
    virtual ~MyTauClass();
    virtual Int_t    Cut(Long64_t entry);
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
-   virtual void     Loop(TString outputpath="");
+   virtual void     Loop(TString outputpath);
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
 };
@@ -1146,7 +1146,7 @@ public :
 #endif
 
 #ifdef MyTauClass_cxx
-MyTauClass::MyTauClass(TTree *tree, TString filepath) : fChain(0) 
+MyTauClass::MyTauClass(TString filepath, TTree *tree=0) : fChain(0) 
 {
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
