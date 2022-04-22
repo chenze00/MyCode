@@ -4,7 +4,8 @@ FILEPATH="/eos/cms/store/group/phys_tau/TauML/prod_2018_v2/full_tuples/DYJetsToL
 
 for FILE in $FILEPATH/*.root
 do
-    echo $FILE
-    source HTC_submit.sh $FILE
-    break
+    NAME=${FILE##*/}
+    NAME=${NAME%.*}
+    echo $FILE $NAME >> jobs/items.txt
+#    break
 done
