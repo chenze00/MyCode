@@ -174,15 +174,17 @@ void MyTauClass::Loop(TString outputpath="")
       if(ievent%30000==0) cout << "processed " << float(ievent)/nentries*100.  <<"%"<< endl;
       //cout<<"ievent="<<ievent<<std::endl;
       int dm=tau_decayMode; // get decay mode
-       dm_HPS=dm;
+      if(tau_pt>0)
+          dm_HPS=dm;
+       else
+           dm_HPS=-1;
       Int_t leng = pfCand_pt->size();//number of pfCand
 
       if(leng<=0)continue;
       if(genLepton_kind!=5)continue;
       if(jet_pt<=0)continue;
-      if(tau_pt<=0)continue;
 
-	//event selection    && genLepton_kind==5 && tau_pt>0
+	//event selection    && genLepton_kind==5
 	
 	auto genLeptons = reco_tau::gen_truth::GenLepton::fromRootTuple(//<std::vector>(
 										     genLepton_lastMotherIndex,
@@ -204,7 +206,7 @@ void MyTauClass::Loop(TString outputpath="")
 	dm_gen = (nChargedHadrons-1)*5 + nNeutralHadrons;
        
        pt_genLep->Fill(genLepton_vis_pt);
-       pt_HPSTau->Fill(tau_pt);
+       if(tau_pt>0)pt_HPSTau->Fill(tau_pt);
        pt_jet->Fill(jet_pt);
 	
 	Float_t deltaR = 0, deltaphi = 0, deltaeta = 0;//deltaR between pfCand and genTau	  
